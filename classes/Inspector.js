@@ -1,0 +1,61 @@
+export class Inspector{
+    
+    lineOne = [1, 2, 3]
+    lineTwo = [4, 5, 6]
+    lineThree = [ 7, 8 , 9]
+
+    lines = [this.lineOne, this.lineTwo, this.lineThree]
+
+    colOne = [1, 4, 7]
+    colTwo = [2, 5, 8]
+    colThree = [3, 6, 9]
+
+    cols = [this.colOne, this.colTwo, this.colThree]
+
+    diagonalOne = [1, 5, 9]
+    diagonalTwo = [7, 5, 3]
+
+    diagonals = [this.diagonalOne, this.diagonalTwo]
+    
+    checkRows(rows){
+        rows.map(line => {
+            let res = 0
+            line.map( l => {
+                let value = document.getElementById(l).dataset.value
+                if(value !== undefined){
+                    res += parseInt(value)
+                }
+            })  
+            this.checkEnd(res)
+        })
+    }
+
+    checkLine(){    
+        this.checkRows(this.lines)
+    }
+
+    checkCol(){
+        this.checkRows(this.cols)
+    }
+
+    checkDiagonal(){
+        this.checkRows(this.diagonals)
+    }
+    
+    checkEnd(res){
+        if(res === 3){
+            console.log("Le joueur 1 à gagné")
+        }else if(res === -3){
+            console.log("Le joueur 2 a gagné")
+        }
+
+        /**
+         * TO DO 
+         * Check if game is full
+         * Remove event listener if a player won
+         */
+
+    }
+
+
+}
