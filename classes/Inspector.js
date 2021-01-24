@@ -1,5 +1,9 @@
 export class Inspector{
-    
+
+    constructor(){
+        this.end = false
+    }
+
     lineOne = [1, 2, 3]
     lineTwo = [4, 5, 6]
     lineThree = [ 7, 8 , 9]
@@ -17,7 +21,7 @@ export class Inspector{
 
     diagonals = [this.diagonalOne, this.diagonalTwo]
     
-    checkRows(rows){
+    checkRows(rows){true
         rows.map(line => {
             let res = 0
             line.map( l => {
@@ -26,11 +30,11 @@ export class Inspector{
                     res += parseInt(value)
                 }
             })  
-            this.checkEnd(res)
+            this.checkEnd(res)   
         })
     }
 
-    checkLine(){    
+    checkLine(){   
         this.checkRows(this.lines)
     }
 
@@ -41,21 +45,22 @@ export class Inspector{
     checkDiagonal(){
         this.checkRows(this.diagonals)
     }
+
+    checkCells(){
+        this.checkLine()
+        this.checkCol()
+        this.checkDiagonal()
+    }
     
     checkEnd(res){
         if(res === 3){
             console.log("Le joueur 1 à gagné")
+            this.end = true
+            alert("Player 1 won !")
         }else if(res === -3){
             console.log("Le joueur 2 a gagné")
+            this.end = true
+            alert("Player two won !")
         }
-
-        /**
-         * TO DO 
-         * Check if game is full
-         * Remove event listener if a player won
-         */
-
     }
-
-
 }

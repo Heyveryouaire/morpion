@@ -10,15 +10,8 @@ export class Morpion{
         this.togglePlayer = new TogglePlayer()
         this.inspector = new Inspector()
 
-        this.addEvent()
-        
-    }
-
-
-    addEvent(){
-        const ref = document.getElementById("ref")
-
-        ref.addEventListener("click", (e) => {
+        this.ref = document.getElementById("ref")
+        this.handleClick = (e) => {
             const box = e.target
             if(box.dataset.value === undefined){
                 box.textContent = this.togglePlayer.currentMark
@@ -26,11 +19,18 @@ export class Morpion{
                 this.togglePlayer.switchPlayer()
             }
 
-            this.inspector.checkLine()
-            this.inspector.checkCol()
-            this.inspector.checkDiagonal()
+            this.inspector.checkCells()
 
-        })
+            if(this.inspector.end){
+                this.ref.removeEventListener("click", this.handleClick)
+            }
+        }
+
+        this.addEvent()
+        
     }
 
+    addEvent(){
+        this.ref.addEventListener("click", this.handleClick)
+    }
 }
